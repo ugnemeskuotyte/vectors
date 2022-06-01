@@ -25,8 +25,8 @@ vector klasė kurta remiantis cplusplus.com vector dokumentacija: https://www.cp
 12. ReAlloc() - pakeičia vektoriaus talpą
 
 ### Įvykdyti atminties perskirtymai:
-std::vector - 
-vector - 
+std::vector - 41
+vector - 24
 
 ### Užpildymo spartos analizė su Int
 |           INT          |       10000      |      100000     |     1000000    |   10000000   |   100000000   |
