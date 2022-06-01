@@ -58,13 +58,6 @@ public:
 		std::move(il.begin(), il.end(), Data);
 	}
 
-	//destruktorius
-	~vector()
-	{
-		//clear();
-		::operator delete(Data, Capacity * sizeof(T));
-	};
-
 	//operator=
 	vector& operator=(const vector& x) //copy assignement
 	{
@@ -94,7 +87,12 @@ public:
 		std::move(il.begin(), il.end(), Data);
 		return *this;
 	}
-
+	//destruktorius
+	~vector()
+	{
+		clear();
+		::operator delete(Data, Capacity * sizeof(T));
+	};
 	//iterators
 	iterator begin() { return Data; }
 	const_iterator begin() const { return Data; }
@@ -218,13 +216,13 @@ public:
 	{
 		if (Size >= Capacity)
 			ReAlloc(Capacity * 2);
-		new(&Data[Size + 1]) T(val);
+		new(&Data[Size++]) T(val);
 	}
 	void push_back(value_type&& val)
 	{
 		if (Size >= Capacity)
 			ReAlloc(Capacity * 2);
-		new(&Data[Size + 1]) T(val);
+		new(&Data[Size++]) T(val);
 	}
 	void pop_back()
 	{
@@ -310,7 +308,7 @@ public:
 	}
 	void clear()
 	{
-		if (Data != nullptr)
+		if (Data)
 		{
 			for (size_type i = 0; i < Size; i++)
 				Data[i].~T();
